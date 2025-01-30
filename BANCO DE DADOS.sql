@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS ProfEduDB;
 CREATE DATABASE ProfEduDB;
 USE ProfEduDB;
 CREATE TABLE Professores(
@@ -19,14 +20,14 @@ CREATE TABLE Disciplinas(
 	id_disciplina INT auto_increment PRIMARY KEY,
     codigo VARCHAR(20) NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    CH INT(3) NOT NULL,
+    CH CHAR(3) NOT NULL,
     competencia_necessaria INT NOT NULL
 );
 CREATE TABLE Turmas(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	id_professor INT NOT NULL,
     id_disciplina INT NOT NULL,
-    ano INT(4) NOT NULL, /*2024; 2025*/
+    ano CHAR(4) NOT NULL, /*2024; 2025*/
     periodo ENUM('1' , '2') NOT NULL,
     horario ENUM('Manhã', 'Tarde', 'Noite') NOT NULL
 );
