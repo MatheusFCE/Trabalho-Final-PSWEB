@@ -6,7 +6,7 @@ CREATE TABLE Professores(
 	matricula INT NOT NULL,
 	nome VARCHAR(200) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-    telefone VARCHAR(50) NOT NULL
+  	telefone VARCHAR(50) NOT NULL
 ); 
 CREATE TABLE Competencias(
 	id_competencia int primary key auto_increment, 
@@ -14,22 +14,22 @@ CREATE TABLE Competencias(
 );
 CREATE TABLE Professores_X_Competencias(
 	id_professor INT NOT NULL,
-    id_competencia INT NOT NULL
+  	id_competencia INT NOT NULL
 );
 CREATE TABLE Disciplinas(
 	id_disciplina INT auto_increment PRIMARY KEY,
-    codigo VARCHAR(20) NOT NULL,
-    nome VARCHAR(50) NOT NULL,
-    CH CHAR(3) NOT NULL,
-    competencia_necessaria INT NOT NULL
+  	codigo VARCHAR(20) NOT NULL,
+    	nome VARCHAR(50) NOT NULL,
+    	CH CHAR(3) NOT NULL,
+    	competencia_necessaria INT NOT NULL
 );
 CREATE TABLE Turmas(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	id_professor INT NOT NULL,
-    id_disciplina INT NOT NULL,
-    ano CHAR(4) NOT NULL, /*2024; 2025*/
-    periodo ENUM('1' , '2') NOT NULL,
-    horario ENUM('Manhã', 'Tarde', 'Noite') NOT NULL
+    	id_disciplina INT NOT NULL,
+    	ano CHAR(4) NOT NULL, /*2024; 2025*/
+    	periodo ENUM('1' , '2') NOT NULL,
+    	horario ENUM('Manhã', 'Tarde', 'Noite') NOT NULL
 );
 ALTER TABLE Turmas
 ADD CONSTRAINT fk_ProfessoresxTurmas
@@ -77,19 +77,19 @@ DELIMITER ;
 
 INSERT INTO Professores(matricula, nome, email, telefone)
 VALUES  ( 1050808, 'ANTONIO DE BARROS SERRA', 'anserra@ifce.edu.br', '(85) 9234-5678'),
-		( 508080, 'ANTONIO WENDELL DE OLIVEIRA RODRIGUES', 'wendell@ifce.edu.br', '(85) 9791-2345'),
+	( 508080, 'ANTONIO WENDELL DE OLIVEIRA RODRIGUES', 'wendell@ifce.edu.br', '(85) 9791-2345'),
         ( 907727, 'FABIO ALENCAR MENDONÇA', 'fabio@ifce.edu.br', '(85) 2800-4177');
         
 INSERT INTO Competencias(descricao) 
 VALUES  ('PROJETO DE SISTEMAS WEB'),
-		('SISTEMAS DE RÁDIO ENLACE');       
+	('SISTEMAS DE RÁDIO ENLACE');       
         
 INSERT INTO Professores_X_Competencias(id_professor, id_competencia)
-VALUES  (1,1),
-		(3,2);
+VALUES 	(1,1),
+	(3,2);
         
 INSERT INTO Disciplinas(codigo, nome, CH, competencia_necessaria)
-VALUES ('SRE', 'SISTEMAS DE RÁDIO ENLACE', '80', 2);
+VALUES  ('SRE', 'SISTEMAS DE RÁDIO ENLACE', '80', 2);
 
 INSERT INTO Turmas(id_professor, id_disciplina, ano, periodo, horario)
-VALUES (3, 1, '2025', 2, 'Manhã');
+VALUES 	(3, 1, '2025', 2, 'Manhã');
