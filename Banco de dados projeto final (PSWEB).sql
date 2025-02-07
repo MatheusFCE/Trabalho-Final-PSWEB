@@ -3,7 +3,6 @@ CREATE DATABASE ProfEduDB;
 USE ProfEduDB;
 CREATE TABLE Professores(
 	id_professor INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	matricula INT NOT NULL,
 	nome VARCHAR(200) NOT NULL,
 	email VARCHAR(100) NOT NULL,
   	telefone VARCHAR(50) NOT NULL
@@ -27,7 +26,7 @@ CREATE TABLE Turmas(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	id_professor INT NOT NULL,
     	id_disciplina INT NOT NULL,
-    	ano CHAR(4) NOT NULL, /*2024; 2025*/
+    	ano YEAR NOT NULL, /*2024; 2025*/
     	periodo ENUM('1' , '2') NOT NULL,
     	horario ENUM('Manhã', 'Tarde', 'Noite') NOT NULL
 );
@@ -74,22 +73,3 @@ END;
 //
 
 DELIMITER ;
-
-INSERT INTO Professores(matricula, nome, email, telefone)
-VALUES  ( 1050808, 'ANTONIO DE BARROS SERRA', 'anserra@ifce.edu.br', '(85) 9234-5678'),
-	( 508080, 'ANTONIO WENDELL DE OLIVEIRA RODRIGUES', 'wendell@ifce.edu.br', '(85) 9791-2345'),
-        ( 907727, 'FABIO ALENCAR MENDONÇA', 'fabio@ifce.edu.br', '(85) 2800-4177');
-        
-INSERT INTO Competencias(descricao) 
-VALUES  ('PROJETO DE SISTEMAS WEB'),
-	('SISTEMAS DE RÁDIO ENLACE');       
-        
-INSERT INTO Professores_X_Competencias(id_professor, id_competencia)
-VALUES 	(1,1),
-	(3,2);
-        
-INSERT INTO Disciplinas(codigo, nome, CH, competencia_necessaria)
-VALUES  ('SRE', 'SISTEMAS DE RÁDIO ENLACE', '80', 2);
-
-INSERT INTO Turmas(id_professor, id_disciplina, ano, periodo, horario)
-VALUES 	(3, 1, '2025', 2, 'Manhã');
