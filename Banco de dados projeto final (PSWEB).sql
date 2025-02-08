@@ -8,7 +8,7 @@ CREATE TABLE Professores(
   	telefone VARCHAR(50) NOT NULL
 ); 
 CREATE TABLE Habilitacoes(
-	id_habilitacao int primary key auto_increment, 
+	id_habilitacao INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 	descricao VARCHAR(100) NOT NULL
 );
 CREATE TABLE Professores_X_Competencias(
@@ -16,14 +16,14 @@ CREATE TABLE Professores_X_Competencias(
   	id_habilitacao INT NOT NULL
 );
 CREATE TABLE Disciplinas(
-	id_disciplina INT auto_increment PRIMARY KEY,
+	id_disciplina INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   	codigo VARCHAR(20) NOT NULL,
     	nome VARCHAR(50) NOT NULL,
     	CH CHAR(3) NOT NULL,
     	habilitacao_necessaria INT NOT NULL
 );
 CREATE TABLE Turmas(
-	id INT PRIMARY KEY AUTO_INCREMENT,
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_professor INT NOT NULL,
     	id_disciplina INT NOT NULL,
     	ano YEAR NOT NULL, /*2024; 2025*/
