@@ -13,7 +13,8 @@ CREATE TABLE Habilitacoes(
 );
 CREATE TABLE Professores_X_Habilitacoes(
 	id_professor INT NOT NULL,
-  	id_habilitacao INT NOT NULL
+  	id_habilitacao INT NOT NULL,
+	PRIMARY KEY (id_professor, id_habilitacao)
 );
 CREATE TABLE Disciplinas(
 	id_disciplina INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
