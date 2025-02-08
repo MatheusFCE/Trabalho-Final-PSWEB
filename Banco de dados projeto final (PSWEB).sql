@@ -14,11 +14,7 @@ CREATE TABLE Habilitacoes(
 CREATE TABLE Professores_X_Habilitacoes(
 	id_professor INT NOT NULL,
   	id_habilitacao INT NOT NULL,
-<<<<<<< HEAD
-    PRIMARY KEY (id_professor, id_habilitacao)
-=======
 	PRIMARY KEY (id_professor, id_habilitacao)
->>>>>>> 23c03828fb057fba9239b8365bc32f48b624a0f6
 );
 CREATE TABLE Disciplinas(
 	id_disciplina INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -77,8 +73,4 @@ END;
 
 //
 
-<<<<<<< HEAD
 DELIMITER ;
-=======
-DELIMITER ;
->>>>>>> 23c03828fb057fba9239b8365bc32f48b624a0f6
