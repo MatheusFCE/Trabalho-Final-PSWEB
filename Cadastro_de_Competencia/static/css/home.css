@@ -1,17 +1,20 @@
 @charset "UTF-8";
 
 body {
-    background-color:azure;
+    background-color: azure;
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     background-attachment: fixed;
     background-image: url(../imagens/imagem_home.png);
+    background-repeat:no-repeat;
+    background-size: 100%;
+    background-position: center;
     overflow: hidden;
 }
 
 div#form_fundo {
-    background-color:rgb(239, 239, 239);
+    background-color: rgb(239, 239, 239);
     margin: 10% 25% 25% 25%;
     text-align: center;
     border-radius: 8px;
@@ -20,19 +23,20 @@ div#form_fundo {
     box-shadow: 2px 2px 2px 2px rgb(120, 117, 117);
     width: 100%;
     max-width: 400px;
-
 }
-#form_frente {
+
+div#form_frente {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0px;
 }
+
 button {
     position: relative;
     background-color: #737373;
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 12px 25px;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;

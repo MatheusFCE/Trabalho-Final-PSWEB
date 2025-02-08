@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Disciplinas</title>
+    <link rel="stylesheet" href="/static/css/disciplinas.css">
+</head>
+<body>
+    <div id="form_fundo">
+        <h1>Cadastrar Disciplina</h1>
+        <div id="form_frente">
+            <form action="/cadastrardisciplina" id="cadastro" method="post">
+                <div class="linha">
+                    <label for="codigo">Código:</label>
+                    <input type="text" name="codigo" id=codigo required placeholder="Ex: ASR">
+                </div>
+                <div class="linha">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome" required placeholder="Ex: Administração de serviços de rede">
+                </div>
+                <div class="linha">
+                    <label for="carga_horaria">Carga Horária:</label>
+                    <input type="number" name="carga_horaria" id="carga_horaria" required placeholder="Ex: 120">
+                </div>
+                <div class="linha">
+                    <label for="habilitacao_necessaria">Habilitação Necessária:</label>
+                    <input type="number" name="habilitacao_necessaria" id="habilitacao_necessaria" required placeholder="Ex: Redes">
+                </div>
+                <button type="button" onclick="window.history.back();" id="btn_Voltar">
+                    Voltar
+                </button>
+                <button type="submit" id="btn_Cadastrar">
+                    Cadastrar
+                </button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
