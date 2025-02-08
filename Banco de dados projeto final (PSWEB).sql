@@ -11,7 +11,7 @@ CREATE TABLE Habilitacoes(
 	id_habilitacao INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 	descricao VARCHAR(100) NOT NULL
 );
-CREATE TABLE Professores_X_Competencias(
+CREATE TABLE Professores_X_Habilitacoes(
 	id_professor INT NOT NULL,
   	id_habilitacao INT NOT NULL
 );
