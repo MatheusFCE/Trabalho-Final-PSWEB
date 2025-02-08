@@ -38,8 +38,8 @@ ALTER TABLE Turmas
 ADD CONSTRAINT fk_DisciplinasXTurmas
 FOREIGN KEY (id_disciplina) REFERENCES Disciplinas(id_disciplina);
 
-ALTER TABLE Professores_X_Competencias
-ADD CONSTRAINT fk_Professores_X_Competencias_Professores
+ALTER TABLE Professores_X_Habilitacoes
+ADD CONSTRAINT fk_Professores_X_Habilitacoes_Professores
 FOREIGN KEY (id_professor) references Professores(id_professor);
 
 ALTER TABLE Professores_X_Habilitacoes
