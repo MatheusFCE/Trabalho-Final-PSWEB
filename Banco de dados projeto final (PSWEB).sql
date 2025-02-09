@@ -77,9 +77,9 @@ DELIMITER ;
 
 INSERT INTO Habilitacoes(descricao)
 VALUES  ('Matemática e Cálculo'),
-		('Eletricidade e Eletrônica'),
+	('Eletricidade e Eletrônica'),
         ('Computação e Programação'),
         ('Redes e Telecomunicações'),
         ('Comunicação de Dados e Sistemas'),
-		('Ciências Humanas e Linguagem')
+	('Ciências Humanas e Linguagem')
         
