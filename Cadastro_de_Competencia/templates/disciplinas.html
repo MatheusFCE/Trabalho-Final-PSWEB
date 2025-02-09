@@ -13,7 +13,7 @@
             <form action="/cadastrardisciplina" id="cadastro" method="post">
                 <div class="linha">
                     <label for="codigo">Código:</label>
-                    <input type="text" name="codigo" id=codigo required placeholder="Ex: ASR">
+                    <input type="text" name="codigo" id="codigo" required placeholder="Ex: ASR">
                 </div>
                 <div class="linha">
                     <label for="nome">Nome:</label>
@@ -25,7 +25,12 @@
                 </div>
                 <div class="linha">
                     <label for="habilitacao_necessaria">Habilitação Necessária:</label>
-                    <input type="number" name="habilitacao_necessaria" id="habilitacao_necessaria" required placeholder="Ex: Redes">
+                    <select name="habilitacao_necessaria" id="habilitacao_necessaria" required>
+                        <option value="">Selecione uma habilitação</option>
+                        {% for habilitacao in habilitacoes %}
+                            <option value="{{ habilitacao['id_habilitacao'] }}">{{ habilitacao['descricao'] }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <button type="button" onclick="window.history.back();" id="btn_Voltar">
                     Voltar
@@ -33,7 +38,6 @@
                 <button type="submit" id="btn_Cadastrar">
                     Cadastrar
                 </button>
-
             </form>
         </div>
     </div>

@@ -4,7 +4,6 @@ import mysql.connector
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'matheusfce'
 
-# Variável global para configuração do banco de dados
 DB_CONFIG = {
     'host': 'localhost',
     'database': 'ProfEduDB',
@@ -20,44 +19,54 @@ def home():
     return render_template('home.html')
 
 @app.route('/professores', methods=['GET'])
-def cadprof():
+def professores():
     return render_template('professores.html')
 
 @app.route('/disciplinas', methods=['GET'])
-def caddisc():
-    return render_template('disciplinas.html')
+def disciplinas():
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Habilitacoes")
+        habilitacoes = cursor.fetchall()
+    except mysql.connector.Error as err:
+        flash(f"Erro ao buscar habilitações: {err}", 'danger')
+        habilitacoes = []
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
 
-@app.route('/vprofessoresdisciplinas', methods=['GET'])
-def vincprofdisc():
-    return render_template('vprofessoresdisciplinas.html')
+    return render_template('disciplinas.html', habilitacoes=habilitacoes)
 
-@app.route('/turmas', methods=['GET'])
-def turmas():
-    return render_template('turmas.html')
-
-@app.route('/cadastrarprofessor', methods=['POST'])
-def cadastrarprofessor():
+@app.route('/cadastrardisciplina', methods=['POST'])
+def cadastrardisciplina():
+    codigo = request.form.get('codigo')
     nome = request.form.get('nome')
-    email = request.form.get('email')
-    telefone = request.form.get('telefone')
-    
+    carga_horaria = request.form.get('carga_horaria')
+    habilitacao_necessaria_id = request.form.get('habilitacao_necessaria')
+
     try:
         connect_db = get_db_connection()
         cursor = connect_db.cursor()
-        cursor.execute("INSERT INTO Professores (nome, email, telefone) VALUES (%s, %s, %s);", (nome, email, telefone))
+        cursor.execute(
+            "INSERT INTO Disciplinas (codigo, nome, CH, habilitacao_necessaria) VALUES (%s, %s, %s, %s);",
+            (codigo, nome, carga_horaria, habilitacao_necessaria_id)
+        )
         connect_db.commit()
-        flash(f'Professor {nome} cadastrado com sucesso!', 'success')
+        flash(f'Disciplina {nome} cadastrada com sucesso!', 'success')
 
     except mysql.connector.Error as err:
-        flash(f"Erro ao cadastrar professor: {err}", 'danger')
+        flash(f"Erro ao cadastrar disciplina: {err}", 'danger')
 
     finally:
         if cursor:
             cursor.close()
         if connect_db.is_connected():
             connect_db.close()
-    
-    return redirect('/professores')
+
+    return redirect('/disciplinas')
 
 if __name__ == "__main__":
     app.run(debug=True)
