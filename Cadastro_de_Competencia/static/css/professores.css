@@ -1,33 +1,42 @@
 @import url(../css/home.css);
 
-.linha{
+.linha {
     align-items: center;
     display: flex;
     margin-bottom: 7px;
     margin-right: 20px;
 }
 
-#form_frente{
+#form_frente {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
 }
 
-label{
-    flex: 0.6;
+label {
+    flex: 0.7;
     text-align: right;
     padding-right: 10px;
 }
-input{
+
+input,
+select {
     flex: 2;
     width: 100%;
     padding: 5px;
 
 }
 
-#btn_Cadastrar{
+#btn_Cadastrar {
     margin-top: 21.44px;
 
+}
 
+#habilitacao {
+    color: gray;
+}
+
+#habilitacao:valid {
+    color: black;
 }

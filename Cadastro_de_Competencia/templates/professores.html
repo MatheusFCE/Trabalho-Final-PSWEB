@@ -30,7 +30,7 @@
                     <select name="habilitacao" id="habilitacao" required>
                         <option value="">Selecione uma habilitação</option>
                         {% for habilitacao in habilitacoes %}
-                            <option value="{{ habilitacao['id_habilitacao'] }}">{{ habilitacao['descricao'] }}</option>
+                        <option value="{{ habilitacao['id_habilitacao'] }}">{{ habilitacao['descricao'] }}</option>
                         {% endfor %}
                     </select>
                 </div>

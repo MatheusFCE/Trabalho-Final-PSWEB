@@ -93,14 +93,14 @@ def cadastrardisciplina():
     codigo = request.form.get('codigo')
     nome = request.form.get('nome')
     carga_horaria = request.form.get('carga_horaria')
-    habilitacao_necessaria_id = request.form.get('habilitacao_necessaria')
+    habilitacao_necessaria = request.form.get('habilitacao_necessaria')
 
     try:
         connect_db = get_db_connection()
         cursor = connect_db.cursor()
         cursor.execute(
             "INSERT INTO Disciplinas (codigo, nome, CH, habilitacao_necessaria) VALUES (%s, %s, %s, %s);",
-            (codigo, nome, carga_horaria, habilitacao_necessaria_id)
+            (codigo, nome, carga_horaria, habilitacao_necessaria)
         )
         connect_db.commit()
         flash(f'Disciplina {nome} cadastrada com sucesso!', 'success')
@@ -115,6 +115,55 @@ def cadastrardisciplina():
             connect_db.close()
 
     return redirect('/disciplinas')
+
+@app.route('/turmas')
+def turmas():
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Professores")
+        professores = cursor.fetchall()
+        cursor.execute("SELECT * FROM Disciplinas")
+        disciplinas = cursor.fetchall()
+    except mysql.connector.Error as err:
+        flash(f"Erro ao buscar turmas: {err}", 'danger')
+        professores = []
+        disciplinas = []
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return render_template('turmas.html', professores=professores, disciplinas=disciplinas)
+
+@app.route('/cadastrarturma', methods=['POST'])
+def cadastrarturma():
+    id_professor = request.form.get('id_professor')
+    id_disciplina = request.form.get('id_disciplina')
+    ano = request.form.get('ano')
+    periodo = request.form.get('periodo')
+    horario = request.form.get('horario')
+
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor()
+        cursor.execute(
+            "INSERT INTO Turmas (id_professor, id_disciplina, ano, periodo, horario) VALUES (%s, %s, %s, %s, %s);",
+            (id_professor, id_disciplina, ano, periodo, horario)
+        )
+        connect_db.commit() 
+        flash(f'Turma cadastrada com sucesso!', 'success')
+    except mysql.connector.Error as err:
+        flash(f"Erro ao cadastrar turma: {err}", 'danger')
+
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return redirect('/turmas')
 
 if __name__ == "__main__":
     app.run(debug=True)

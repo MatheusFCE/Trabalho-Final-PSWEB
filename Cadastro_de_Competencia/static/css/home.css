@@ -7,7 +7,7 @@ body {
     justify-content: center;
     background-attachment: fixed;
     background-image: url(../imagens/imagem_home.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
     overflow: hidden;

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Disciplinas</title>
     <link rel="stylesheet" href="/static/css/disciplinas.css">
 </head>
+
 <body>
     <div id="form_fundo">
         <h1>Cadastrar Disciplina</h1>
@@ -17,7 +19,8 @@
                 </div>
                 <div class="linha">
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required placeholder="Ex: Administração de Serviços de Rede">
+                    <input type="text" name="nome" id="nome" required
+                        placeholder="Ex: Administração de Serviços de Rede">
                 </div>
                 <div class="linha">
                     <label for="carga_horaria">Carga Horária:</label>
@@ -28,7 +31,7 @@
                     <select name="habilitacao_necessaria" id="habilitacao_necessaria" required>
                         <option value="">Selecione uma habilitação</option>
                         {% for habilitacao in habilitacoes %}
-                            <option value="{{ habilitacao['id_habilitacao'] }}">{{ habilitacao['descricao'] }}</option>
+                        <option value="{{ habilitacao['id_habilitacao'] }}">{{ habilitacao['descricao'] }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -42,4 +45,5 @@
         </div>
     </div>
 </body>
+
 </html>
