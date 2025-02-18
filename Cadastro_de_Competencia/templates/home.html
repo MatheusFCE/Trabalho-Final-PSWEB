@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -9,26 +9,18 @@
 </head>
 
 <body>
-    <div id="form_fundo">
-        <h1>MENU</h1>
-        <div id="form_frente">
-            <form action="/professores" id="professores" method="get">
-                <button type="submit" id="btn_Cadastrar_Pofessores">
-                    Cadastro de Professores
-                </button>
-            </form>
-            <form action="/disciplinas" id="disciplinas" method="get">
-                <button type="submit" id="btn_Cadastrar_Disciplinas">
-                    Cadastro de Disciplinas
-                </button>
-            </form>
-            <form action="/turmas" id="turmas" method="get">
-                <button type="submit" id="btn_Turmas">
-                    Turmas
-                </button>
-            </form>
-        </div>
-    </div>
+<nav>
+    <h1>Sistema acadêmico</h1>
+    <h2>Professores</h2>
+    <a href="/professores"><button>Cadastrar</button></a>
+    <a href="/professores-consulta"><button>Editar</button></a>
+    <h2>Disciplinas</h2>
+    <a href="/disciplinas"><button>Cadastrar</button></a>
+    <a href="/disciplinas-consulta"><button>Editar</button></a>
+    <h2>Turmas</h2>
+    <a href="/turmas"><button>Cadastrar</button></a>
+    <a href="/turmas-consulta"><button>Editar</button></a>
+</nav>
 </body>
 
 </html>

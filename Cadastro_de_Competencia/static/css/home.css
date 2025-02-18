@@ -13,9 +13,9 @@ body {
     overflow: hidden;
 }
 
-div#form_fundo {
+div#form_fundo, nav {
     background-color: rgb(239, 239, 239);
-    margin: 10% 25% 25% 25%;
+    margin: 0;
     text-align: center;
     border-radius: 8px;
     padding: 40px;
@@ -24,6 +24,15 @@ div#form_fundo {
     width: 100%;
     max-width: 400px;
 }
+
+nav {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 
 div#form_frente {
     display: flex;
@@ -48,4 +57,12 @@ button {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+nav a {
+    text-decoration: none; 
+    color: inherit; 
+    font-family: inherit;
+    font-size: inherit; 
+    background: none;
 }
