@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turmas</title>
     <link rel="stylesheet" href="/static/css/turmas.css">
+    <script>
+        function carregarProfessores() {
+            const disciplinaSelecionada = document.getElementById('disciplina').value;
+            const professorSelect = document.getElementById('professor');
+            professorSelect.innerHTML = '<option value="">Selecione um professor</option>';
 
+            if (disciplinaSelecionada) {
+                fetch(`/professores_habilitados?disciplina_id=${disciplinaSelecionada}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(professor => {
+                            const option = document.createElement('option');
+                            option.value = professor.id_professor;
+                            option.textContent = professor.nome;
+                            professorSelect.appendChild(option);
+                        });
+                    });
+            }
+        }
+    </script>
 </head>
-
 <body>
     <div id="form_fundo">
         <h1>Cadastrar Turmas</h1>
         <div id="form_frente">
             <form action="/cadastrarturma" id="cadastrarturma" method="post">
                 <div class="linha">
-                    <label for="professor">Professor:</label>
-                    <select name="id_professor" id="professor" required>
-                        <option value="">Selecione um professor</option>
-                        {% for professor in professores %}
-                        <option value="{{ professor['id_professor'] }}">{{ professor['nome'] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="linha">
                     <label for="disciplina">Disciplina:</label>
-                    <select name="id_disciplina" id="disciplina" required>
+                    <select name="id_disciplina" id="disciplina" required onchange="carregarProfessores()">
                         <option value="">Selecione uma disciplina</option>
                         {% for disciplina in disciplinas %}
                         <option value="{{ disciplina['id_disciplina'] }}">{{ disciplina['nome'] }}</option>
                         {% endfor %}
+                    </select>
+                </div>
+                <div class="linha">
+                    <label for="professor">Professor:</label>
+                    <select name="id_professor" id="professor" required>
+                        <option value="">Selecione um professor</option>
                     </select>
                 </div>
                 <div class="linha">
@@ -54,7 +68,7 @@
                     </select>
                 </div>
                 <div class="linha">
-                    <button type="button" onclick="window.history.back();" id="btn_voltar">
+                    <button type="button" onclick="window.location.href='/'" id="btn_Voltar">
                         Voltar
                     </button>
                 </div>
@@ -67,5 +81,4 @@
         </div>
     </div>
 </body>
-
 </html>

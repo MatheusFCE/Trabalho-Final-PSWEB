@@ -14,14 +14,15 @@
         <div id="form_frente">
             <form action="/cadastrardisciplina" id="cadastro" method="post">
                 <div class="linha">
-                    <label for="codigo">Código:</label>
-                    <input type="text" name="codigo" id="codigo" required placeholder="Ex: ASR">
-                </div>
-                <div class="linha">
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" id="nome" required
                         placeholder="Ex: Administração de Serviços de Rede">
                 </div>
+                <div class="linha">
+                    <label for="codigo">Código:</label>
+                    <input type="text" name="codigo" id="codigo" required placeholder="Ex: ASR">
+                </div>
+
                 <div class="linha">
                     <label for="carga_horaria">Carga Horária:</label>
                     <input type="number" name="carga_horaria" id="carga_horaria" required placeholder="Ex: 120">
@@ -35,7 +36,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button type="button" onclick="window.history.back();" id="btn_Voltar">
+                <button type="button" onclick="window.location.href='/'" id="btn_Voltar">
                     Voltar
                 </button>
                 <button type="submit" id="btn_Cadastrar">
