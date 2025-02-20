@@ -24,7 +24,7 @@ CREATE TABLE Disciplinas(
     	habilitacao_necessaria INT NOT NULL
 );
 CREATE TABLE Turmas(
-	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_turma INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_professor INT NOT NULL,
     	id_disciplina INT NOT NULL,
     	ano YEAR NOT NULL, /*2024; 2025*/

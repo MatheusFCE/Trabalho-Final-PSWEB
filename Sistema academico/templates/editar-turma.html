@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Turma</title>
+    <link rel="stylesheet" href="/static/css/editar-turma.css">
+
+</head>
+
+<body>
+    <h1>Editar Turma</h1>
+    <form method="POST">
+        <label for="id_professor">Professor:</label>
+        <input type="number" id="id_professor" name="id_professor" value="{{ turma.id_professor }}" required><br>
+
+        <label for="id_disciplina">Disciplina:</label>
+        <input type="number" id="id_disciplina" name="id_disciplina" value="{{ turma.id_disciplina }}" required><br>
+
+        <label for="ano">Ano:</label>
+        <input type="number" id="ano" name="ano" value="{{ turma.ano }}" required><br>
+
+        <label for="periodo">Período:</label>
+        <input type="text" id="periodo" name="periodo" value="{{ turma.periodo }}" required><br>
+
+        <label for="horario">Horário:</label>
+        <input type="text" id="horario" name="horario" value="{{ turma.horario }}" required><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('turmas_consulta') }}">Voltar</a>
+</body>
+
+</html>

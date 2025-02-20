@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Disciplina</title>
+    <link rel="stylesheet" href="/static/css/editar-disciplina.css">
+    <link rel="stylesheet" href="/static/css/editar-professor.css">
+
+</head>
+
+<body>
+    <h1>Editar Disciplina</h1>
+    <form method="POST">
+        <label for="codigo">Código:</label>
+        <input type="text" id="codigo" name="codigo" value="{{ disciplina.codigo }}" required><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ disciplina.nome }}" required><br>
+
+        <label for="carga_horaria">Carga Horária:</label>
+        <input type="number" id="carga_horaria" name="carga_horaria" value="{{ disciplina.CH }}" required><br>
+
+        <label for="habilitacao_necessaria">Habilitação Necessária:</label>
+        <input type="text" id="habilitacao_necessaria" name="habilitacao_necessaria" value="{{ disciplina.habilitacao_necessaria }}" required><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('disciplinas_consulta') }}">Voltar</a>
+</body>
+
+</html>

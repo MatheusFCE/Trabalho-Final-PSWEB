@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Turmas</title>
     <link rel="stylesheet" href="/static/css/turmas-consulta.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <div id="form_fundo">
         <h1>Lista de Turmas</h1>
-        <div id="form_fundo">
+        <div id="form_frente">
             <table>
                 <thead>
                     <tr>
@@ -21,6 +22,7 @@
                         <th>Ano</th>
                         <th>Período</th>
                         <th>Horário</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +34,18 @@
                         <td>{{ turma.ano }}</td>
                         <td>{{ turma.periodo }}</td>
                         <td>{{ turma.horario }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_turma', id=turma.id_turma) }}" class="btn-editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <form action="{{ url_for('excluir_turma', id=turma.id_turma) }}" method="POST"
+                                style="display: inline;">
+                                <button type="submit" class="btn-excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta turma?');">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

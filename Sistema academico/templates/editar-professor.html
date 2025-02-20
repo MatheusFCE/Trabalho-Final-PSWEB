@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Professor</title>
+    <link rel="stylesheet" href="/static/css/editar-professor.css">
+
+</head>
+
+<body>
+    <h1>Editar Professor</h1>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ professor.nome }}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ professor.email }}" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="{{ professor.telefone }}" required><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('professores_consulta') }}">Voltar</a>
+</body>
+
+</html>

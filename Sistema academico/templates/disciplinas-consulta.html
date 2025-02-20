@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Disciplinas</title>
     <link rel="stylesheet" href="/static/css/disciplinas-consulta.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -20,6 +21,7 @@
                         <th>Nome</th>
                         <th>Carga Horária</th>
                         <th>Habilitação Necessária</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +32,16 @@
                         <td>{{ disciplina.nome }}</td>
                         <td>{{ disciplina.CH }}</td>
                         <td>{{ disciplina.habilitacao_necessaria }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_disciplina', id=disciplina.id_disciplina) }}" class="btn-editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <form action="{{ url_for('excluir_disciplina', id=disciplina.id_disciplina) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta disciplina?');">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

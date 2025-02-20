@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, redirect, request, flash
+from flask import Flask, jsonify, render_template, redirect, request, flash, url_for
 import mysql.connector
 
 app = Flask(__name__)
@@ -220,6 +220,70 @@ def professores_consulta():
 
     return render_template('professores-consulta.html', professores=professores)
 
+@app.route('/editar-professor/<int:id>', methods=['GET', 'POST'])
+def editar_professor(id):
+    if request.method == 'GET':
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Professores WHERE id_professor = %s", (id,))
+            professor = cursor.fetchone()
+            if not professor:
+                flash("Professor não encontrado.", 'danger')
+                return redirect(url_for('professores_consulta'))
+        except mysql.connector.Error as err:
+            flash(f"Erro ao buscar professor: {err}", 'danger')
+            return redirect(url_for('professores_consulta'))
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return render_template('editar-professor.html', professor=professor)
+
+    elif request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        telefone = request.form['telefone']
+
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor()
+            cursor.execute(
+                "UPDATE Professores SET nome = %s, email = %s, telefone = %s WHERE id_professor = %s",
+                (nome, email, telefone, id)
+            )
+            connect_db.commit()
+            flash("Professor atualizado com sucesso!", 'success')
+        except mysql.connector.Error as err:
+            flash(f"Erro ao atualizar professor: {err}", 'danger')
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return redirect(url_for('professores_consulta'))
+    
+@app.route('/excluir-professor/<int:id>', methods=['POST'])
+def excluir_professor(id):
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor()
+        cursor.execute("DELETE FROM Professores WHERE id_professor = %s", (id,))
+        connect_db.commit()
+        flash("Professor excluído com sucesso!", 'success')
+    except mysql.connector.Error as err:
+        flash(f"Erro ao excluir professor: {err}", 'danger')
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return redirect(url_for('professores_consulta'))
+
 @app.route('/disciplinas-consulta', methods=['GET'])
 def disciplinas_consulta():
     try:
@@ -237,6 +301,71 @@ def disciplinas_consulta():
             connect_db.close()
 
     return render_template('disciplinas-consulta.html', disciplinas=disciplinas)
+    
+@app.route('/editar-disciplina/<int:id>', methods=['GET', 'POST'])
+def editar_disciplina(id):
+    if request.method == 'GET':
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Disciplinas WHERE id_disciplina = %s", (id,))
+            disciplina = cursor.fetchone()
+            if not disciplina:
+                flash("Disciplina não encontrada.", 'danger')
+                return redirect(url_for('disciplinas_consulta'))
+        except mysql.connector.Error as err:
+            flash(f"Erro ao buscar disciplina: {err}", 'danger')
+            return redirect(url_for('disciplinas_consulta'))
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return render_template('editar-disciplina.html', disciplina=disciplina)
+
+    elif request.method == 'POST':
+        codigo = request.form['codigo']
+        nome = request.form['nome']
+        carga_horaria = request.form['carga_horaria']
+        habilitacao_necessaria = request.form['habilitacao_necessaria']
+
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor()
+            cursor.execute(
+                "UPDATE Disciplinas SET codigo = %s, nome = %s, CH = %s, habilitacao_necessaria = %s WHERE id_disciplina = %s",
+                (codigo, nome, carga_horaria, habilitacao_necessaria, id)
+            )
+            connect_db.commit()
+            flash("Disciplina atualizada com sucesso!", 'success')
+        except mysql.connector.Error as err:
+            flash(f"Erro ao atualizar disciplina: {err}", 'danger')
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return redirect(url_for('disciplinas_consulta'))
+
+@app.route('/excluir-disciplina/<int:id>', methods=['POST'])
+def excluir_disciplina(id):
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor()
+        cursor.execute("DELETE FROM Disciplinas WHERE id_disciplina = %s", (id,))
+        connect_db.commit()
+        flash("Disciplina excluída com sucesso!", 'success')
+    except mysql.connector.Error as err:
+        flash(f"Erro ao excluir disciplina: {err}", 'danger')
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return redirect(url_for('disciplinas_consulta'))
 
 @app.route('/turmas-consulta', methods=['GET'])
 def turmas_consulta():
@@ -255,6 +384,72 @@ def turmas_consulta():
             connect_db.close()
 
     return render_template('turmas-consulta.html', turmas=turmas)
+
+@app.route('/editar-turma/<int:id>', methods=['GET', 'POST'])
+def editar_turma(id):
+    if request.method == 'GET':
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Turmas WHERE id_turma = %s", (id,))
+            turma = cursor.fetchone()
+            if not turma:
+                flash("Turma não encontrada.", 'danger')
+                return redirect(url_for('turmas_consulta'))
+        except mysql.connector.Error as err:
+            flash(f"Erro ao buscar turma: {err}", 'danger')
+            return redirect(url_for('turmas_consulta'))
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return render_template('editar-turma.html', turma=turma)
+
+    elif request.method == 'POST':
+        id_professor = request.form['id_professor']
+        id_disciplina = request.form['id_disciplina']
+        ano = request.form['ano']
+        periodo = request.form['periodo']
+        horario = request.form['horario']
+
+        try:
+            connect_db = get_db_connection()
+            cursor = connect_db.cursor()
+            cursor.execute(
+                "UPDATE Turmas SET id_professor = %s, id_disciplina = %s, ano = %s, periodo = %s, horario = %s WHERE id_turma = %s",
+                (id_professor, id_disciplina, ano, periodo, horario, id)
+            )
+            connect_db.commit()
+            flash("Turma atualizada com sucesso!", 'success')
+        except mysql.connector.Error as err:
+            flash(f"Erro ao atualizar turma: {err}", 'danger')
+        finally:
+            if cursor:
+                cursor.close()
+            if connect_db.is_connected():
+                connect_db.close()
+
+        return redirect(url_for('turmas_consulta'))
+    
+@app.route('/excluir-turma/<int:id>', methods=['POST'])
+def excluir_turma(id):
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor()
+        cursor.execute("DELETE FROM Turmas WHERE id_turma = %s", (id,))
+        connect_db.commit()
+        flash("Turma excluída com sucesso!", 'success')
+    except mysql.connector.Error as err:
+        flash(f"Erro ao excluir turma: {err}", 'danger')
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return redirect(url_for('turmas_consulta'))
 
 if __name__ == "__main__":
     app.run(debug=True)
