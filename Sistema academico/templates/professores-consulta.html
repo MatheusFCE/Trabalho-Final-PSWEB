@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Professor</title>
+    <title>Consulta de Professores</title>
     <link rel="stylesheet" href="/static/css/professores-consulta.css">
-
 </head>
+
 <body>
-    
+    <div id="form_fundo">
+        <h1>Lista de Professores</h1>
+        <div id="form_frente">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for professor in professores %}
+                    <tr>
+                        <td>{{ professor.id_professor }}</td>
+                        <td>{{ professor.nome }}</td>
+                        <td>{{ professor.email }}</td>
+                        <td>{{ professor.telefone }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" onclick="window.location.href='/'" id="btn_Voltar">
+                Voltar
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>

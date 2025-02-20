@@ -204,15 +204,57 @@ def professores_habilitados():
 
 @app.route('/professores-consulta', methods=['GET'])
 def professores_consulta():
-    return render_template('professores-consulta.html')
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Professores")
+        professores = cursor.fetchall()
+    except mysql.connector.Error as err:
+        flash(f"Erro ao buscar professores: {err}", 'danger')
+        professores = []
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
 
-@app.route('/disciplinas-consulta')
+    return render_template('professores-consulta.html', professores=professores)
+
+@app.route('/disciplinas-consulta', methods=['GET'])
 def disciplinas_consulta():
-    return render_template('disciplinas-consulta.html')
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Disciplinas")
+        disciplinas = cursor.fetchall()
+    except mysql.connector.Error as err:
+        flash(f"Erro ao buscar disciplinas: {err}", 'danger')
+        disciplinas = []
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
 
-@app.route('/turmas-consulta')
+    return render_template('disciplinas-consulta.html', disciplinas=disciplinas)
+
+@app.route('/turmas-consulta', methods=['GET'])
 def turmas_consulta():
-    return render_template('turmas-consulta.html')
+    try:
+        connect_db = get_db_connection()
+        cursor = connect_db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Turmas")
+        turmas = cursor.fetchall()
+    except mysql.connector.Error as err:
+        flash(f"Erro ao buscar turmas: {err}", 'danger')
+        turmas = []
+    finally:
+        if cursor:
+            cursor.close()
+        if connect_db.is_connected():
+            connect_db.close()
+
+    return render_template('turmas-consulta.html', turmas=turmas)
 
 if __name__ == "__main__":
     app.run(debug=True)

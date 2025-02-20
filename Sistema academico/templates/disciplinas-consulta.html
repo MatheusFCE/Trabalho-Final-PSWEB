@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Disciplinas</title>
+    <title>Consulta de Disciplinas</title>
     <link rel="stylesheet" href="/static/css/disciplinas-consulta.css">
 </head>
+
 <body>
-    
+    <div id="form_fundo">
+        <h1>Lista de Disciplinas</h1>
+        <div id="form_frente">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Carga Horária</th>
+                        <th>Habilitação Necessária</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for disciplina in disciplinas %}
+                    <tr>
+                        <td>{{ disciplina.id_disciplina }}</td>
+                        <td>{{ disciplina.codigo }}</td>
+                        <td>{{ disciplina.nome }}</td>
+                        <td>{{ disciplina.CH }}</td>
+                        <td>{{ disciplina.habilitacao_necessaria }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" onclick="window.location.href='/'" id="btn_Voltar">
+                Voltar
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>

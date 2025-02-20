@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Turmas</title>
+    <title>Consulta de Turmas</title>
     <link rel="stylesheet" href="/static/css/turmas-consulta.css">
-
 </head>
+
 <body>
-    
+    <div id="form_fundo">
+        <h1>Lista de Turmas</h1>
+        <div id="form_fundo">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Professor</th>
+                        <th>Disciplina</th>
+                        <th>Ano</th>
+                        <th>Período</th>
+                        <th>Horário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for turma in turmas %}
+                    <tr>
+                        <td>{{ turma.id_turma }}</td>
+                        <td>{{ turma.id_professor }}</td>
+                        <td>{{ turma.id_disciplina }}</td>
+                        <td>{{ turma.ano }}</td>
+                        <td>{{ turma.periodo }}</td>
+                        <td>{{ turma.horario }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" onclick="window.location.href='/'" id="btn_Voltar">
+                Voltar
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>
