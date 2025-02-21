@@ -41,11 +41,13 @@ FOREIGN KEY (id_disciplina) REFERENCES Disciplinas(id_disciplina);
 
 ALTER TABLE Professores_X_Habilitacoes
 ADD CONSTRAINT fk_Professores_X_Habilitacoes_Professores
-FOREIGN KEY (id_professor) references Professores(id_professor);
+FOREIGN KEY (id_professor) references Professores(id_professor)
+ON DELETE CASCADE;
 
 ALTER TABLE Professores_X_Habilitacoes
 ADD CONSTRAINT fk_Professores_X_Habilitacao_Habilitacoes
-FOREIGN KEY (id_habilitacao) REFERENCES Habilitacoes(id_habilitacao);
+FOREIGN KEY (id_habilitacao) REFERENCES Habilitacoes(id_habilitacao)
+ON DELETE CASCADE;
 
 ALTER TABLE Disciplinas
 ADD CONSTRAINT fk_HabilitacoesXDisciplinas
